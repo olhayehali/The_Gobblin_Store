@@ -1,0 +1,20 @@
+.navbar {
+    background-color: #a8a5a8;
+}
+footer {
+background-color: #9b9b9b;
+}                             
+
+.card {
+    width: 18rem;
+    margin: 0px 5px;
+    cursor: pointer;
+  }                      
+  
+.toast{
+    position:fixed;
+    top: 10%;
+    left: 30%;
+    z-index: 2;
+    opacity: 1;
+}

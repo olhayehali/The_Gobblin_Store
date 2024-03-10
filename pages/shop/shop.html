@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goblin Store</title>
+  <link rel="icon" type="image/ico" href="./pics/tiny.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="/pages/shop/shop.css" rel="stylesheet">
+
+  <!-- Load jQuery from a cdn (cloudflare) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <!-- Load bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  
+  <!-- Header -->
+  <div id="header"></div>
+
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="mr-auto">added items</strong>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+
+  <div class="container text-center border-bottom">
+    <h1>Gold Group</h1>
+    <h6>These goblins produce a special high frequency chirp that is so looked after.</h6>
+    <div class="container d-flex-col d-lg-flex justify-content-center align-items-center mb-2 p-sm-5">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Supreme Goblin<br>$150</b></p>
+        </div>
+        <img src="/pics/tiny.png" class="card-img-top mymodal" alt="picture of goblin">
+        <button class="btn btn-primary row-12 mx-5 my-2" onclick="addItem('Supreme Goblin', 150)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Magical Goblin<br>$125</b></p>
+        </div>
+        <img src="/pics/tiny.png" class="card-img-top" alt="picture of goblin">
+        <button class="btn btn-primary row-12 mx-5 my-2" onclick="addItem('Magical Goblin', 150)">Add to Cart</button>
+
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Elite Goblin<br>$110</b></p>
+        </div>
+        <img src="/pics/tiny.png" class="card-img-top" alt="picture of goblin">
+        <button class="btn btn-primary row-12 mx-5 my-2" onclick="addItem('Elite Goblin', 150)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="container text-center border-bottom">
+    <h1>Silver Group</h1>
+    <h6>These goblins are starting to learn the chirp, but can only produce it on a full moon.</h6>
+    <div class="container d-block d-lg-flex justify-content-around border-bottom p-sm-5">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Joker Goblin<br>$80</p>
+        </div>
+        <img src="/pics/tiny.png" class="card-img-top" alt="picture of goblin">
+        <button class="btn btn-primary row-12 mx-5 my-2" onclick="addItem('Supreme Goblin', 150)">Add to Cart</button>
+
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Mage Goblin<br>$65</p>
+        </div>
+        <img src="/pics/tiny.png" class="card-img-top" alt="picture of goblin">
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Dancing Goblin<br>$55</p>
+        </div>
+        <img src="/pics/tiny.png" class="card-img-top" alt="picture of goblin">
+      </div>
+    </div>
+  </div>
+  <div class="container text-center border-bottom ">
+    <h1>Bronze Group</h1>
+    <h6>These goblins are on sale! Good luck trying to get a chirp out of these.</h6>
+    <div class="container d-block d-lg-flex justify-content-around border-bottom p-sm-5">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Sad Goblin<br>$35</p>
+        </div>
+        <img src="/pics/tiny.png" class="card-img-top" alt="">
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Broken Goblin<br>$25</p>
+        </div>
+        <img src="/pics/tiny.png" class="card-img-top" alt="">
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Crying Goblin<br>$15</p>
+        </div>
+        <img src="/pics/tiny.png" class="card-img-top" alt="">
+      </div>
+    </div>
+  </div>
+
+    <!-- Shopping Cart Button -->
+    <div id="shoppingCart"></div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <!-- Load shop.js -->
+  <script src="/pages/shop/shop.js"></script>
+</body>
+</html>
