@@ -4,7 +4,7 @@ function renderProducts(products) {
     let product = products[key];
     $("#products").append(
       `
-      <div class="row-12 row-lg-12 w-50 row-md-10 m-2">
+      <div class="col-lg-8  m-auto my-2">
         <div class="card h-100">
           <img src="${product.image}" class="card-img-top" alt="${product.name}" width=300 height=300>
           <div class="card-body">

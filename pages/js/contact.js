@@ -16,5 +16,22 @@ $(document).ready(() => {
 
   // Load shoppingCart.html
   $("#shoppingCart").load("/template/shoppingCart/shoppingCart.html");
+
+  //check if browser is laptop
+  //if it is then add event listener to each image
+  //else it's not laoptop then not add event listener
+  if (window.innerWidth > 768 ) {
+    //this two event listen to mouse movement on each image 
+    //if mouse in big up the image
+    //if mouse out big down the image
+    $(".card-img").on("mouseover", function () {
+      $(this).css("transition", "transform 0.5s");
+      $(this).css("transform", "scale(1.2)");
+    });
+    $(".card-img").on("mouseout", function () {
+      $(this).css("transition", "transform 0.5s");
+      $(this).css("transform", "scale(1)");
+    });
+  }
  });
   

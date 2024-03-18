@@ -84,7 +84,7 @@ $(document).ready(function () {
                     -
                   </button>    
                   <button class='btn btn-danger deleteItem' id='${product.name}' >
-                    <i class="fa-solid fa-trash"></i>
+                  <img src="/pics/trash-solid.svg" width="10" height="10" class='img' alt="trash">
                   </button>           
               </div>
               `

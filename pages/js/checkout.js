@@ -44,7 +44,7 @@ function inputCheck(object){
   let text = $(object).val();
   let id = $(object).attr('id');
   //regex patterm fpr name
-  let namePattern = /^[a-zA-Z]+$/;
+  let namePattern = /^[a-zA-Z ]+$/;
   //regex pattern for email
   let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   //regex pattern for address
@@ -56,7 +56,7 @@ function inputCheck(object){
   //regex pattern for zip
   let zipPattern = /^[0-9]{5}$/;
   //regex pattern for card name
-  let cardNamePattern = /^[a-zA-Z]+$/;
+  let cardNamePattern = /^[a-zA-Z ]+$/;
   //regex pattern for card number
   let cardNumberPattern = /^[0-9]{16}$/;
   //regex pattern for card cvv

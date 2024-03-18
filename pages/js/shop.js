@@ -1,13 +1,3 @@
-function addItem(object,name,price){
-  //get object arg their parent with kquery
-  // let text = $(object).parent().find('.card-text').text(); 
-  // alert(text.split("$")[0]);
-  //split the text to get the name and price
-  $('.toast-body').text(name + ":"+price+"$ has been added to your cart");
-  $('.toast').toast('show');
-  $(this).trigger('click');
-}  
-
 function ready(){
     // Load the header.html into the header div, once it's loaded execute callback to add class to headerHome div
   $("#header").load("/template/header/header.html", () => {
@@ -56,6 +46,7 @@ function ready(){
   // if the user clicks the .card div (goblin item)
   $(".card").click(function () {
   let products = [];
+  //get items name, price and image
 
   // populate the products array with the current product's info
   if (localStorage.getItem("items")) {
@@ -66,7 +57,9 @@ function ready(){
   const itemPrice = itemElement.split("$")[1]; // 100
   const itemImage = $(this).find(".card-img-top").attr("src");
 
-
+  //show the toast
+  $('.toast-body').text(itemName + ":"+itemPrice+"$ has been added to your cart");
+  $('.toast').toast('show');
 
   // check if the item is already in the cart
   let itemExists = false;
