@@ -1,6 +1,11 @@
-function addItem(name,price){
-  // alert("Item added to cart\n"+name+" $"+price);
+function addItem(object,name,price){
+  //get object arg their parent with kquery
+  // let text = $(object).parent().find('.card-text').text(); 
+  // alert(text.split("$")[0]);
+  //split the text to get the name and price
+  $('.toast-body').text(name + ":"+price+"$ has been added to your cart");
   $('.toast').toast('show');
+  $(this).trigger('click');
 }  
 
 function ready(){
@@ -24,6 +29,17 @@ function ready(){
       $("#totalPrice").text(localStorage.getItem("totalPrice"));
     }
   }
+  function renderItemsQuantity(){
+    let itemNumber = 0;
+    if (localStorage.getItem("items")) {
+      products = JSON.parse(localStorage.getItem("items"));
+      products.map((product) => {
+        itemNumber += product.quantity;
+      });
+    }
+    $(".numberOfItems").text(itemNumber);  
+    $("#totalItemsValue").text(itemNumber.toFixed(0));
+  }
   function calculTotalPrice() {
     let total = 0;
     if (localStorage.getItem("items")) {
@@ -34,6 +50,7 @@ function ready(){
     }
     localStorage.setItem("totalPrice", total.toFixed(2));
     renderTotal();
+    renderItemsQuantity();
   }  
 
   // if the user clicks the .card div (goblin item)
@@ -47,6 +64,7 @@ function ready(){
   const itemElement = $(this).find(".card-text").text(); // Supreme Goblin$100
   const itemName = itemElement.split("$")[0]; // Supreme Goblin
   const itemPrice = itemElement.split("$")[1]; // 100
+  const itemImage = $(this).find(".card-img-top").attr("src");
 
 
 
@@ -65,6 +83,7 @@ function ready(){
     name: itemName,
     price: itemPrice,
     quantity: 1,
+    image: itemImage,
   });
   }
 
@@ -72,11 +91,8 @@ function ready(){
   localStorage.setItem("items", JSON.stringify(products));
   calculTotalPrice();
 
-
-  // // Open shoppingCartButton.html and update .numberOfItems div
-  // $("#shoppingCart").load("template/shoppingCart/shoppingCart.html", () => {
-  // });
   $(".numberOfItems").text(products.length);
+  renderItemsQuantity();
 });
 }
 

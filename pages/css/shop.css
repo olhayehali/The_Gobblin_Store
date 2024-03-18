@@ -18,3 +18,15 @@ background-color: #9b9b9b;
     z-index: 2;
     opacity: 1;
 }
+
+/* media query */
+@media (max-width: 768px) {
+    .toast{
+        position:fixed;
+        top: 10%;
+        left: 0%;
+        z-index: 2;
+        opacity: 1;
+    }
+}
+

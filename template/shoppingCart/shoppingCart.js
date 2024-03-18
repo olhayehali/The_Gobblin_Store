@@ -1,36 +1,66 @@
-$(document).ready(function () {
-  var products = Array();
-  var totalPrice = 0;
-  if (localStorage.getItem("totalPrice")) {
-    totalPrice = localStorage.getItem("totalPrice");
-  }
-  function renderTotal() {
-    if(localStorage.getItem("totalPrice")){
-      $("#totalPrice").text(localStorage.getItem("totalPrice"));
-    }
-  }
-  function calculTotalPrice() {
-    let total = 0;
-    if (localStorage.getItem("items")) {
-      products = JSON.parse(localStorage.getItem("items"));
-      products.map((product) => {
-        total += product.price * product.quantity;
-      });
-    }
-    localStorage.setItem("totalPrice", total.toFixed(2));
-    renderTotal();
-  }
-  calculTotalPrice();
+var products = Array();
+var totalPrice = 0;
 
+function renderTotal() {
+  if(localStorage.getItem("totalPrice")){
+    $("#totalPrice").text(localStorage.getItem("totalPrice"));
+    $("#totalPrice2").text("$"+localStorage.getItem("totalPrice"));
+  }
+}
+function calculTotalPrice() {
+  let total = 0;
+  if (localStorage.getItem("items")) {
+    products = JSON.parse(localStorage.getItem("items"));
+    products.map((product) => {
+      total += product.price * product.quantity;
+    });
+  }
+  localStorage.setItem("totalPrice", total.toFixed(2));
+  renderTotal();
+  try {
+    renderCheckoutCart();
+    
+  } catch (error) {
+    console.log("No items in cart");        
+  }
+
+}
+function renderItemsQuantity(){
   let itemNumber = 0;
   if (localStorage.getItem("items")) {
     products = JSON.parse(localStorage.getItem("items"));
-    itemNumber = products.length;
+    products.map((product) => {
+      itemNumber += product.quantity;
+    });
   }
-  $(".numberOfItems").text(itemNumber);
+  $(".numberOfItems").text(itemNumber);  
+  $("#totalItemsValue").text(itemNumber.toFixed(0));
+  try {
+    renderCheckoutCart();
+    
+  } catch (error) {
+    console.log("No items in cart");        
+  }
+}
+function goToCheckout(){
+  //check if there are items in the cart
+  if(localStorage.getItem("totalPrice")> 0){
+    window.location.href = "/pages/checkout/checkout.html";
+  }
+  else{
+    $(".modal-body").text("No items in cart");
+  }
+}
+
+$(document).ready(function () {
+
   // when the user clicks the shopping cart button, update .modal-body with the items in the cart
+  calculTotalPrice();
+
+  renderItemsQuantity();
+  
   $(".buttonWrapper").click(function () {
-    if (localStorage.getItem("items")) {
+    if (localStorage.getItem("items").length > 0) {
 
       products = JSON.parse(localStorage.getItem("items"));
 
@@ -42,16 +72,20 @@ $(document).ready(function () {
         modalBody.append(
           `<div class="productWrapper" id="${product.name}">
                 <div id="productInfo">
-                  <div class="name">${product.name} - $${product.price}/item</div>
-                  <div class="quantity">x ${product.quantity}</div>
+                  <img src='${product.image}' height='30' width='30'/>
+                  <span class="name">${product.name} - $${product.price}/item</span><br/>
                 </div>
-                <div id="actions">
+                <div id="actions" class='display:flex'>
                   <button class="btn btn-primary increaseQuantity" id="${product.name}">
                     +
                   </button>
-                  <button class="btn btn-danger decreaseQuantity" id="${product.name}">
+                  <span class="quantity">${product.quantity}</span>
+                  <button class="btn btn-secondary decreaseQuantity" id="${product.name}">
                     -
-                  </button>               
+                  </button>    
+                  <button class='btn btn-danger deleteItem' id='${product.name}' >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>           
               </div>
               `
         );
@@ -69,13 +103,12 @@ $(document).ready(function () {
         $(this)
           .closest(".productWrapper") // get the closest productWrapper div
           .find(".quantity") // get the quantity div
-          .text(`x ${product.quantity}`); // update the text of the quantity
+          .text(` ${product.quantity}`); // update the text of the quantity
 
         // update the items in localStorage
         localStorage.setItem("items", JSON.stringify(products));
         calculTotalPrice();
-        $(".numberOfItems").text(products.length);
-
+        renderItemsQuantity();
       });
 
       $(".decreaseQuantity").click(function () {
@@ -86,20 +119,37 @@ $(document).ready(function () {
           $(this)
             .closest(".productWrapper")
             .find(".quantity")
-            .text(`x ${product.quantity}`);
-        } else {
+            .text(` ${product.quantity}`);
+        } 
+        else if(product.quantity === 1){
+          // products = products.filter((product) => product.name !== productName);
+          // $(this).closest(".productWrapper").remove();
+        }
+        else {
           // remove the product from the array
           products = products.filter((product) => product.name !== productName);
           $(this).closest(".productWrapper").remove();
         }
         localStorage.setItem("items", JSON.stringify(products));
         calculTotalPrice();
-        $(".numberOfItems").text(products.length);
-
+        renderItemsQuantity();
       });
-      calculTotalPrice();
-      $(".numberOfItems").text(products.length);
 
+      $(".deleteItem").click(function () {
+        let productName = $(this).attr("id");
+        products = products.filter((product) => product.name !== productName);
+        $(this).closest(".productWrapper").remove();
+        localStorage.setItem("items", JSON.stringify(products));
+        calculTotalPrice();
+        renderItemsQuantity();
+      });
+      
+      calculTotalPrice();
+      renderItemsQuantity();
+    }
+    else{
+      $(".modal-body").text("No Items... Please add items to your cart.");
     }
   });
+  $("#checkoutButton").click(goToCheckout);
 });

@@ -1,0 +1,10 @@
+.navbar {
+    background-color: #a8a5a8;
+}
+
+.input-valid{
+    border: 1px solid green;
+}
+.is-not-invalid{
+    border: 1px solid red;
+}

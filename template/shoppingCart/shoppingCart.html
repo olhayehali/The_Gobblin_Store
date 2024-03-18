@@ -5,6 +5,8 @@
   href="/template/shoppingCart/shoppingCart.css"
 />
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <!-- Shoping Cart JS business logic -->
 <script src="/template/shoppingCart/shoppingCart.js"></script>
 
@@ -51,6 +53,12 @@
       </div>
       <!-- total price of items  -->
       <div class="modal-footer">
+        <div class="totalItems">
+          <h5>
+            Quantity:
+            <span id="totalItemsValue">0</span>
+          </h5>
+        </div>
         <div class="totalPrice">
           <h5>
             Total: $
@@ -66,7 +74,7 @@
         <button
           type="button"
           class="btn btn-primary"
-          onclick="location.href='checkout/checkout.html'"
+          id="checkoutButton"
         >
           Continue to Checkout
         </button>
