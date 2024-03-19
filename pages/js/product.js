@@ -23,7 +23,6 @@ async function getProducts() {
   // Get the products from the server
   let data = await fetch("http://localhost:3000/products");
   let productsResponse = await data.json();
-  console.log(productsResponse);
   renderProducts(productsResponse);
 }
 
