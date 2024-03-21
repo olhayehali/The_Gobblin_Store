@@ -1,9 +1,5 @@
 backend/config.env
 backend/node_modules
 
-extra/email_template.html
-extra/UI_design.pdf
-extra/email_image/
-extra/explanation.txt
 
 

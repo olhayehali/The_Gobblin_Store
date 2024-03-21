@@ -1,0 +1,8 @@
+=======================================explanation=====================================
+backend directory contain an express server who serve two action:
+-receive data from ajax request from checkout page .it process data then send to mailTrap api for sending mail .
+-endpoint of products to send json data of products page as the rawg.io api wasn't available .
+
+inside extra dir:
+-email_template file to render a good ui in the email sent to customer.
+-ui file design of checkout and product page.
