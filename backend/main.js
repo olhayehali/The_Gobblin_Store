@@ -1,7 +1,6 @@
 const { MailtrapClient } = require("mailtrap");
 const express = require("express");
 const cors = require('cors');
-const dotenv = require('dotenv');
 const fs = require('fs');
 
 
@@ -12,6 +11,9 @@ var client;
 
 function init() {
   //read file config.env as json and get value of ENDPOINT and TOKEN
+  //i used config.env file to store the endpoint and token for security reasons
+  //i added config.env to .gitignore file so it will not be pushed to github
+
   fs.readFile('config.env', 'utf8', function (err, data) {
     if (err) throw err;
     var obj = JSON.parse(data);
@@ -24,16 +26,24 @@ function init() {
 
 init();
 
+//create express app
+//use express.json() to parse incoming requests with JSON payloads
+//use cors() to enable CORS with various options:because i used live server or react for a real work project so 
+//i need to enable CORS to allow the frontend to access the backend
 const app = express();
 app.use(express.json());
+//in this way it will accept requests from any origin
 app.use(cors());
 
 
 // console.log(client.testing)
 
+//set port and address
 let port = 3000;
 let address = 'localhost';
 
+//function to send email
+//in fact it render sender and recipients as object
 function sendEmail(data) {
   const sender = {
     email: "mailtrap@demomailtrap.com",
@@ -46,6 +56,9 @@ function sendEmail(data) {
   ];
   return {sender, recipients};
 }
+
+//mack data for products as the same as the data in the frontend
+//because rawg.io api wasn't working
 var products = {
   1: {
     id: 1,
@@ -78,6 +91,9 @@ var products = {
 };
 
 
+//the endpoint that will be called when the user click on the buy button
+//it will send an email to the user with the details of the order
+//using mailtrap API
 app.post("/email", (req, res) => {
   let data = req.body;
   //added shipping fee to total
@@ -114,6 +130,7 @@ app.post("/email", (req, res) => {
     });  
 });
 
+//the products endpoint  just send the products data as json
 app.get("/products", (req, res) => {   
   res.json(products);
 });
