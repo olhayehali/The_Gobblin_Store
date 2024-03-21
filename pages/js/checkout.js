@@ -1,4 +1,7 @@
-//setup firebase config
+//this is the configuration for the firebase database
+//and it should never ever be availble to client side
+//but i will leave it here for the purpose of this project
+//and i will delete it after the project is done
 const firebaseConfig = {
   apiKey: "AIzaSyAnOhTqBrR80l5VjytR_hiIES5bmdIKhw8",
   authDomain: "olkashop.firebaseapp.com",
@@ -23,6 +26,10 @@ const db = firebase.database(app);
 //if false when the user close the modal the page will not be redirected to the shop page
 var redirect = false;
 
+//this function is used to validate the form
+//it will add the class was-validated to the form
+//if the form is not valid it will prevent the default event and stop the propagation of the event
+//if the form is valid it will not do anything
 function formValidation(event){
   let form = $("#checkoutForm");
   if (form[0].checkValidity() === false) {
@@ -137,9 +144,9 @@ $("#checkoutForm input[type='text']").on('input',(e) => {
   inputCheck(e.target);
 });
 
-// $("#checkoutForm").submit(function(e){
-//   formValidation(e);
-// });
+$("#checkoutForm").submit(function(e){
+  formValidation(e);
+});
 
 
 //for the checkout form submission event:will sent data to firebase database then trigger the modal to show success submission

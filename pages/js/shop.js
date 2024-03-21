@@ -43,7 +43,10 @@ function ready(){
     renderItemsQuantity();
   }  
 
-  // if the user clicks the .card div (goblin item)
+  // if the user clicks the add to cart button or the card, add the item to the cart
+  // it will save the cart info to localStorage
+  //it will show the toast: "item has been added to your cart" momentarily
+  //then render the number of items in the cart and the total price in the cart
   $(".card").click(function () {
   let products = [];
   //get items name, price and image
@@ -87,6 +90,7 @@ function ready(){
   $(".numberOfItems").text(products.length);
   renderItemsQuantity();
 });
+
 }
 
 // on document ready
